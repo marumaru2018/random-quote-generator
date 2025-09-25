@@ -4,10 +4,15 @@ import Footer from "./components/Footer";
 // import Hero from "./components/Hero";
 import { fetchRandomQuote } from "./api";
 
+type Quote = {
+  quote: string;
+  author: string;
+};
+
 const App = () => {
   // 取得した名言のデータを変数で管理
-  const [quote, setQuote] = useState(null);
-  const [error, setError] = useState(null);
+  const [quote, setQuote] = useState<Quote | null>(null);
+  const [error, setError] = useState<Error | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = () => {
