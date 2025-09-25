@@ -1,4 +1,21 @@
-const Hero = () => {
+import { fetchRandomQuote } from "../api";
+
+type Quote = {
+  id: number;
+  quote: string;
+  author: string;
+  permalink: string;
+};
+
+interface HeroProps {
+  setQuote: (quote: Quote | null) => void;
+}
+
+const Hero = ({ setQuote }: HeroProps) => {
+  const handleClick = () => {
+    // ボタンクリック時の処理
+    fetchRandomQuote().then((data) => setQuote(data));
+  };
   return (
     <div className="text-center space-y-8">
       <h1 className="text-5xl font-bold">Random Quotes Generator</h1>
@@ -12,6 +29,7 @@ const Hero = () => {
       <button
         className="bg-black text-white hover:bg-gray-700 flex mx-auto rounded-xl py-4 px-8"
         type="button"
+        onClick={handleClick}
       >
         <svg
           className="w-6 h-6 mr-2 fill-white"
